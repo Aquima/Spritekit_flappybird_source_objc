@@ -24,6 +24,8 @@
 		F44C45B71947767300EF0F2A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F44C45921947767300EF0F2A /* UIKit.framework */; };
 		F44C45BF1947767300EF0F2A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F44C45BD1947767300EF0F2A /* InfoPlist.strings */; };
 		F44C45C11947767400EF0F2A /* SpriteKitDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F44C45C01947767400EF0F2A /* SpriteKitDemoTests.m */; };
+		F45CA5D21947D4C000359C74 /* Bird.atlas in Resources */ = {isa = PBXBuildFile; fileRef = F45CA5D11947D4C000359C74 /* Bird.atlas */; };
+		F45CA5DD1947D90A00359C74 /* SKDBird.m in Sources */ = {isa = PBXBuildFile; fileRef = F45CA5DC1947D90A00359C74 /* SKDBird.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +62,10 @@
 		F44C45BC1947767300EF0F2A /* SpriteKitDemoTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SpriteKitDemoTests-Info.plist"; sourceTree = "<group>"; };
 		F44C45BE1947767300EF0F2A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		F44C45C01947767400EF0F2A /* SpriteKitDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SpriteKitDemoTests.m; sourceTree = "<group>"; };
+		F45CA5D11947D4C000359C74 /* Bird.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Bird.atlas; sourceTree = "<group>"; };
+		F45CA5DB1947D90A00359C74 /* SKDBird.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKDBird.h; sourceTree = "<group>"; };
+		F45CA5DC1947D90A00359C74 /* SKDBird.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKDBird.m; sourceTree = "<group>"; };
+		F45CA5DE1947E61700359C74 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +127,8 @@
 		F44C45961947767300EF0F2A /* SpriteKitDemo */ = {
 			isa = PBXGroup;
 			children = (
+				F45CA5D31947D86400359C74 /* Class */,
+				F45CA5D01947D4C000359C74 /* Resource */,
 				F44C459F1947767300EF0F2A /* SKDAppDelegate.h */,
 				F44C45A01947767300EF0F2A /* SKDAppDelegate.m */,
 				F44C45A21947767300EF0F2A /* Main.storyboard */,
@@ -162,6 +170,56 @@
 				F44C45BD1947767300EF0F2A /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F45CA5D01947D4C000359C74 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				F45CA5D11947D4C000359C74 /* Bird.atlas */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
+		F45CA5D31947D86400359C74 /* Class */ = {
+			isa = PBXGroup;
+			children = (
+				F45CA5D41947D86400359C74 /* Logic */,
+				F45CA5D51947D86400359C74 /* Scenes */,
+				F45CA5D61947D86400359C74 /* ViewController */,
+			);
+			path = Class;
+			sourceTree = "<group>";
+		};
+		F45CA5D41947D86400359C74 /* Logic */ = {
+			isa = PBXGroup;
+			children = (
+				F45CA5DE1947E61700359C74 /* Constants.h */,
+			);
+			path = Logic;
+			sourceTree = "<group>";
+		};
+		F45CA5D51947D86400359C74 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				F45CA5DA1947D90A00359C74 /* Nodes */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		F45CA5D61947D86400359C74 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		F45CA5DA1947D90A00359C74 /* Nodes */ = {
+			isa = PBXGroup;
+			children = (
+				F45CA5DB1947D90A00359C74 /* SKDBird.h */,
+				F45CA5DC1947D90A00359C74 /* SKDBird.m */,
+			);
+			path = Nodes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -242,6 +300,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F44C459B1947767300EF0F2A /* InfoPlist.strings in Resources */,
+				F45CA5D21947D4C000359C74 /* Bird.atlas in Resources */,
 				F44C45AE1947767300EF0F2A /* Images.xcassets in Resources */,
 				F44C45AC1947767300EF0F2A /* Spaceship.png in Resources */,
 				F44C45A41947767300EF0F2A /* Main.storyboard in Resources */,
@@ -267,6 +326,7 @@
 				F44C45AA1947767300EF0F2A /* SKDMyScene.m in Sources */,
 				F44C45A11947767300EF0F2A /* SKDAppDelegate.m in Sources */,
 				F44C45A71947767300EF0F2A /* SKDViewController.m in Sources */,
+				F45CA5DD1947D90A00359C74 /* SKDBird.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -473,6 +533,7 @@
 				F44C45C61947767400EF0F2A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F44C45C71947767400EF0F2A /* Build configuration list for PBXNativeTarget "SpriteKitDemoTests" */ = {
 			isa = XCConfigurationList;
@@ -481,6 +542,7 @@
 				F44C45C91947767400EF0F2A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
