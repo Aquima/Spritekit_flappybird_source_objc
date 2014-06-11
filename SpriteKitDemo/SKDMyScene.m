@@ -7,47 +7,36 @@
 //
 
 #import "SKDMyScene.h"
-
+#import "SKDBird.h"
 @implementation SKDMyScene
 
 -(id)initWithSize:(CGSize)size {    
     if (self = [super initWithSize:size]) {
         /* Setup your scene here */
-        
-//        self.backgroundColor = [SKColor colorWithRed:0.15 green:0.15 blue:0.3 alpha:1.0];
-//        
-//        SKLabelNode *myLabel = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
-//        
-//        myLabel.text = @"Hello, SpriteKit!";
-//        myLabel.fontSize = 15;
-//        myLabel.position = CGPointMake(CGRectGetMidX(self.frame),
-//                                       CGRectGetMidY(self.frame));
-//        
-//        [self addChild:myLabel];
+        [self createBird];
+
     }
     return self;
 }
-
+#pragma mark - Scene
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     /* Called when a touch begins */
     
-//    for (UITouch *touch in touches) {
-//        CGPoint location = [touch locationInNode:self];
-//
-//        SKSpriteNode *sprite = [SKSpriteNode spriteNodeWithImageNamed:@"Spaceship"];
-//        
-//        sprite.position = location;
-//        
-//        SKAction *action = [SKAction rotateByAngle:M_PI duration:1];
-//        
-//        [sprite runAction:[SKAction repeatActionForever:action]];
-//        
-//        [self addChild:sprite];
-//    }
 }
 
 -(void)update:(CFTimeInterval)currentTime {
     /* Called before each frame is rendered */
+    [bird update:currentTime];
+
 }
+#pragma mark - Nodes
+- (void)createBird
+{
+    bird = [SKDBird new];
+    [bird setPosition:CGPointMake(100, CGRectGetMidY(self.frame))];
+    [bird setName:@"bird"];
+    [self addChild:bird];
+}
+
 
 @end

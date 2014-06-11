@@ -10,6 +10,7 @@
 
 @interface SKDBird : SKSpriteNode{
     NSMutableArray*textureArray;
+    SKSpriteNode*sprite;
 }
 @property (strong,nonatomic) SKAction * flap;
 @property (strong,nonatomic) SKAction * flapForever;
@@ -17,4 +18,5 @@
 - (void) update:(NSUInteger) currentTime;
 - (void) startPlaying;
 - (void) bounce;
+-(void)deletBird;
 @end

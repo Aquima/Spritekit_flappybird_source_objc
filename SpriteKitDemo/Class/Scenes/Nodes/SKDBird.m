@@ -8,50 +8,38 @@
 
 #import "SKDBird.h"
 #define VERTICAL_SPEED 1 // la velocidad vertical
-#define VERTICAL_DELTA 2.0 // es el valor de desplazamiento inicial vertical nota: puedes verificarlo antes de iniciar la mecanica del juego
+#define VERTICAL_DELTA 5.0 // es el valor de desplazamiento inicial vertical nota: puedes verificarlo antes de iniciar la mecanica del juego
 @implementation SKDBird
 static CGFloat deltaPosY = 0;
 static bool goingUp = false;
 - (id)init
 {
     if(self = [super init]){
-
-        // TODO : use texture atlas
-    /*    SKTexture* birdTexture1 = [SKTexture textureWithImageNamed:@"bird_1"];
-        birdTexture1.filteringMode = SKTextureFilteringNearest;
-        SKTexture* birdTexture2 = [SKTexture textureWithImageNamed:@"bird_2"];
-        birdTexture2.filteringMode = SKTextureFilteringNearest;
-        SKTexture* birdTexture3 = [SKTexture textureWithImageNamed:@"bird_3"];
-        birdTexture2.filteringMode = SKTextureFilteringNearest;
-
-        self = [BirdNode spriteNodeWithTexture:birdTexture1];
-
-        self.flap = [SKAction animateWithTextures:@[birdTexture1, birdTexture2,birdTexture3] timePerFrame:0.2];
-        self.flapForever = [SKAction repeatActionForever:self.flap];
-
-        [self setTexture:birdTexture1];
-        [self runAction:self.flapForever withKey:@"flapForever"];*/
+        //Usamos Texture Atlas
         SKTextureAtlas *textureAtlas =[SKTextureAtlas atlasNamed:@"Bird"];
         NSArray *imagesArray = [textureAtlas  textureNames];
         imagesArray = [imagesArray sortedArrayUsingSelector:@selector(localizedStandardCompare:)];
-        textureArray = [NSMutableArray new];
+        textureArray = [[NSMutableArray alloc] init];
         for (NSString*fileName in imagesArray) {
-            SKTexture*texture=[textureAtlas textureNamed:fileName];
+            SKTexture*__weak texture=(SKTexture*)[textureAtlas textureNamed:fileName];
             [textureArray addObject:texture];
         }
-        self = [SKDBird spriteNodeWithTexture:(SKTexture*)[textureArray objectAtIndex:0]];
 
-        self.flap = [SKAction animateWithTextures:textureArray timePerFrame:0.2f];
-        self.flapForever = [SKAction repeatActionForever:self.flap];
-
+        self.flap = [SKAction animateWithTextures:textureArray timePerFrame:0.2f];//accion volar
+        self.flapForever = [SKAction repeatActionForever:self.flap];//accion volar por siempre
         
+        sprite = [SKSpriteNode spriteNodeWithTexture:[textureArray firstObject]];
+        [self addChild:sprite];
+        [sprite runAction:self.flapForever withKey:@"flapForever"];
+        textureAtlas=nil;
     }
     return self;
 }
 
 - (void) update:(NSUInteger) currentTime{
+
     if(!self.physicsBody){
-        NSLog(@"deltaPos: %0.2f",deltaPosY);
+      //  NSLog(@"deltaPos: %0.2f",deltaPosY);
         if(deltaPosY > VERTICAL_DELTA){
             goingUp = false;
         }
@@ -71,11 +59,21 @@ static bool goingUp = false;
     deltaPosY = 0;
     // establecemos el cuerpo del bird nota: sirve para detectar la colision con los demas objetos
     [self setPhysicsBody:[SKPhysicsBody bodyWithRectangleOfSize:CGSizeMake(26, 18)]];
-    self.physicsBody.categoryBitMask = birdBitMask;
-    self.physicsBody.mass = 0.1;
-    [self removeActionForKey:@"flapForever"];
+    self.physicsBody.categoryBitMask = birdBitMask;// manejo de colisiones damos una categoria
+    self.physicsBody.mass = 0.1;//masa para el pajarito le da mayor peso
+    [self removeActionForKey:@"flapForever"];// removemos la accion volar por siempre
 }
 - (void) bounce{
+    NSLog(@"%@",textureArray);
 
+    [self.physicsBody setVelocity:CGVectorMake(0, 0)];
+    [self.physicsBody applyImpulse:CGVectorMake(0, 40)];//impulso en el vector y de 40
+    [self runAction:self.flap];//ejecutar accion
+}
+-(void)deletBird{
+    [self removeAllActions];
+     //[self removeActionForKey:@"flapForever"];
+    [self removeAllChildren];
+    [textureArray removeAllObjects];
 }
 @end

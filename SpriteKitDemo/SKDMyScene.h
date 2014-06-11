@@ -7,7 +7,9 @@
 //
 
 #import <SpriteKit/SpriteKit.h>
-
+@class  SKDBird;
 @interface SKDMyScene : SKScene
-
+{
+    SKDBird*bird;
+}
 @end
